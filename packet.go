@@ -2,6 +2,7 @@ package main
 
 import (
 	"net"
+	"fmt"
 
 	"github.com/google/gopacket"
 	"github.com/google/gopacket/layers"
@@ -101,6 +102,7 @@ type packetWriter interface {
 func sendBonjourPacket(handle packetWriter, bonjourPacket *bonjourPacket, tag uint16, brMACAddress net.HardwareAddr) {
 	*bonjourPacket.vlanTag = tag
 	*bonjourPacket.srcMAC = brMACAddress
+	fmt.Println("Relaying packet from brMACAddress ",brMACAddress)
 
 	// Network devices may set dstMAC to the local MAC address
 	// Rewrite dstMAC to ensure that it is set to the appropriate multicast MAC address
