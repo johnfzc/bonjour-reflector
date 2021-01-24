@@ -2,6 +2,7 @@ package main
 
 import (
 	"io/ioutil"
+	"fmt"
 
 	"github.com/BurntSushi/toml"
 )
@@ -24,6 +25,7 @@ func readConfig(path string) (cfg brconfig, err error) {
 		return brconfig{}, err
 	}
 	_, err = toml.Decode(string(content), &cfg)
+	fmt.Println("Config: ", cfg)
 	return cfg, err
 }
 
